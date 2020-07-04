@@ -1,0 +1,109 @@
+/* General layout stuff */
+
+body {
+  margin: 0;
+  color: #333;
+}
+
+.container {
+  display: flex;
+}
+
+.demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Paytone One', sans-serif;
+  animation: wheelHueColor 12s infinite;
+  height: 100vh;
+  width: 75%;
+}
+
+.explanation {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #eee;
+  border-left: 2px solid #fff;
+  height: 100vh;
+  width: 25%;
+  flex-shrink: no-shrink;
+  position: fixed;
+  right: 0;
+  min-width: 300px;
+  overflow: scroll;
+  padding: 10px;
+}
+
+/* Specific demo overrides */
+
+.text-wrapper {
+  padding: 10px 100px 20px 100px;
+  overflow: hidden;
+}
+
+.demo-text {
+  position: relative;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  font-size: 72px;
+  z-index: 1;
+}
+
+.demo-text::before {
+  animation: bg 6s cubic-bezier(.8,-0.3,.2,1.2) infinite;
+  background: rgba(0,0,0,0.25);
+  content: "";
+  position: absolute;
+  top: -10%;
+  bottom: -20%;
+  z-index: -1;
+}
+
+.letter {
+  animation: letter 6s cubic-bezier(.8,-0.3,.2,1.2) infinite;
+  display: inline-block;
+  opacity: 0;
+}
+
+@keyframes bg {
+  0% {
+    left: -10%;
+    right: 110%;
+  }
+  20%, 80% {
+    left: -10%;
+    right: -10%;
+  }
+  100% {
+    left: 110%;
+    right: -10%;
+  }
+}
+
+@keyframes letter {
+  0%, 10% {
+    transform: translateY(150px);
+    opacity: 1;
+  }
+  30%, 70% {
+    transform: none;
+  }
+  90%, 100% {
+    transform: translateY(-150px);
+    opacity: 1;
+  }
+}
+
+@keyframes wheelHueColor {
+  from, to { background-color: hsl(324, 70%, 45%); }
+  10%      { background-color: hsl(360, 65%, 45%); }
+  20%      { background-color: hsl( 36, 80%, 45%); }
+  30%      { background-color: hsl( 72, 75%, 35%); }
+  40%      { background-color: hsl(108, 65%, 35%); }
+  50%      { background-color: hsl(144, 75%, 35%); }
+  60%      { background-color: hsl(180, 75%, 35%); }
+  70%      { background-color: hsl(216, 60%, 45%); }
+  80%      { background-color: hsl(252, 65%, 50%); }
+  90%      { background-color: hsl(288, 60%, 40%); }
+}

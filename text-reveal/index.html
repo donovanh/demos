@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Revealing Text</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <article class="container">
+        <div class="demo">
+          <div class="text-wrapper">
+            <h1 class="demo-text">Hello world</h1>
+          </div>
+        </div>
+        <div class="explanation">
+          <h1>Revealing text demo</h1>
+          <p>This is a useful trick if you want to display titles in front of changing content such as a carousel.</p>
+          <p>In this demo we display a containing box, then animate into place some text. The text then animates back out before the container is removed.</p>
+          <p>There are two CSS animations and a little JavaScript deals with animating each of the letters. Start with some containing html:</p>
+          <pre><code>&#x3C;div class=&#x22;text-wrapper&#x22;&#x3E;
+  &#x3C;h1&#x3E;Hello world&#x3C;/h1&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+
+          <p>The <code>text-wrapper</code> deals with containing everything so we can have the text appear to animate in:</p>
+          <pre><code>.text-wrapper {
+  padding: 10px 100px 20px 100px;
+  overflow: hidden;
+}</code></pre>
+
+          <p>Then we set up the background box as a pseudo-element on the <code>h1</code>:</p>
+
+          <pre><code>h1::before {
+  animation: bg 6s cubic-bezier(.8,-0.3,.2,1.2) infinite;
+  background: rgba(0,0,0,0.25);
+  content: "";
+  position: absolute;
+  top: -10%;
+  bottom: -20%;
+  z-index: -1;
+}</code></pre>
+
+          <p>This needs keyframes for the <code>bg</code> animation, so here we go:</p>
+
+          <pre><code>@keyframes bg {
+  0% {
+    left: -10%;
+    right: 110%;
+  }
+  20%, 80% {
+    left: -10%;
+    right: -10%;
+  }
+  100% {
+    left: 110%;
+    right: -10%;
+  }
+}</code></pre>
+
+<p>This animates the containing box into place, in the first 20% then away again in between 80% and 100%. It's set to loop infinitely.</p>
+
+  <p>Next, we need to animate the text. First we set up some CSS to handle animating a <code>letter</code> class:</p>
+
+          <pre><code>.letter {
+  animation: letter 6s cubic-bezier(.8,-0.3,.2,1.2) infinite;
+  display: inline-block;
+  opacity: 0;
+}
+
+@keyframes letter {
+  0%, 10% {
+    transform: translateY(150px);
+    opacity: 1;
+  }
+  30%, 70% {
+    transform: none;
+  }
+  90%, 100% {
+    transform: translateY(-150px);
+    opacity: 1;
+  }
+}</code></pre>
+
+<p>This doesn't do much yet as we have no <code>letter</code> elements in the demo. We need to use JavaScript to create them. Add the following to the end of the document inside <code>script</code> tags:</p>
+
+          <pre><code>const letters = document.querySelector('.demo h1');
+const updatedHTML = letters
+  .innerText.split('')
+  .map((letter, i) => {
+    let delay = 0;
+    if (letter === ' ') {
+      letter = '&nbsp;';
+    } else {
+      delay = letter === ' ' ? 0 : (i - 1) * 50;
+    }
+    return `&#x3C;span class=&#x22;letter&#x22; style=&#x22;animation-delay: ${delay}ms&#x22;&#x3E;${letter}&#x3C;/span&#x3E;`
+  })
+  .join('');
+letters.innerHTML = updatedHTML;</code></pre>
+
+<p>The JavaScript here splits the string of letters, and wraps each in a <code>span</code> of class <code>letter</code>. It also calculates an <code>animation-delay</code> so that the letters animate into place one at a time.</p>
+
+  <p>You can see the full code in this <a href="#CODEPEN">demo on CodePen</a>.</p>
+        </div>
+      </article>
+      <script>
+        const letters = document.querySelector('.demo-text');
+        const updatedHTML = letters
+          .innerText.split('')
+          .map((letter, i) => {
+            let delay = 0;
+            if (letter === ' ') {
+              letter = '&nbsp;';
+            } else {
+              delay = letter === ' ' ? 0 : (i - 1) * 50;
+            }
+            return `<span class="letter" style="animation-delay: ${delay}ms">${letter}</span>`
+          })
+          .join('');
+        letters.innerHTML = updatedHTML;
+      </script>
+    </body>
+</html>
