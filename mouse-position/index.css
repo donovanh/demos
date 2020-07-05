@@ -1,0 +1,105 @@
+/* General layout stuff */
+
+body {
+  margin: 0;
+  color: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+}
+
+.demo {
+  background-color: hsl(252, 65%, 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display SC', serif;
+  height: 100vh;
+  width: 75%;
+}
+
+.explanation {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #eee;
+  border-left: 2px solid #fff;
+  height: 100vh;
+  width: 25%;
+  position: relative;
+  min-width: 250px;
+  overflow: scroll;
+  padding: 10px;
+}
+
+/* Specific demo overrides */
+
+.perspective-container {
+  perspective: 800px;
+}
+
+.card {
+  background-color: #ddd;
+  box-shadow: 0 0 140px 10px rgba(0,0,0,.5);
+  position: relative;
+  height: 300px;
+  width: 500px;
+  overflow: hidden;
+  --sheenX: 0; /* Set these with JavaScript */
+  --sheenY: 0;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.top-left {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 10px;
+}
+
+h2, h3, p {
+  margin: 0;
+  text-shadow: 0 1px 1px #ccc;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  bottom: -100px;
+  left: -100px;
+  background: linear-gradient(217deg, rgba(255,255,255,0), rgba(255,255,255,0) 40%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 55%);
+  transform: translateX(var(--sheenX)) translateY(var(--sheenY));
+}

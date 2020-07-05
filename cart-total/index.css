@@ -1,0 +1,84 @@
+/* General layout stuff */
+
+body {
+  background: #eef;
+  margin: 0;
+  color: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+}
+
+.demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Paytone One', sans-serif;
+  height: 100vh;
+  width: 75%;
+}
+
+.explanation {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #eee;
+  border-left: 2px solid #fff;
+  height: 100vh;
+  width: 25%;
+  position: relative;
+  min-width: 250px;
+  overflow: scroll;
+  padding: 10px;
+}
+
+/* Demo styling */
+
+.cart-icon {
+  position: relative;
+}
+
+.cart-icon svg path, .cart-icon svg circle {
+  animation: cartColor 3s infinite linear;
+}
+
+.total {
+  animation: show-total 750ms cubic-bezier(.4,1.7,.36,.78) forwards;
+  display: inline-block;
+  position: absolute;
+  font-family: Helvetica, Sans-serif;
+  color: #fff;
+  font-size: 82px;
+  z-index: 1;
+  right: -10px;
+  top: -10px;
+  width: 110px;
+  height: 110px;
+  text-align: center;
+  line-height: 110px;
+}
+
+@keyframes show-total {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.total::before {
+  border-radius: 50%;
+  content: "";
+  z-index: -1;
+  background:green;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 10px solid #eef;
+}

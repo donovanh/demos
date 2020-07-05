@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mouse Position</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="./index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <article class="container">
+        <div class="demo">
+          <div class="perspective-container">
+            <div class="card">
+              <div class="top-right">
+                <h2>Pierce & Pierce</h2>
+                <p>Mergers and Acquisitions</p>
+              </div>
+              <div class="top-left">
+                <h2>212 555 6342</h2>
+              </div>
+              <div class="bottom">
+                <p>358 Exchange Place New York, N.Y. 10099 fax 212 555 6390 telex  10 4534</p>
+              </div>
+              <div class="center">
+                <h2>Patrick BATEMAN</h2>
+                <h2>Vice President</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="explanation">
+          <h1>How it works</h1>
+          <p>How to create this effect</p>
+        </div>
+      </article>
+      <script>
+        const target = document.querySelector('.card');
+        document.onmousemove = handleMouseMove;
+        function handleMouseMove(event) {
+          const height = window.innerHeight;
+          const width = window.innerWidth;
+          // Creates an angle of -20 (left, bottom) to 20 (right, top)
+          const yAxisDegree = event.pageX / width * 40 - 20;
+          const xAxisDegree = event.pageY / height * -1 * 40 + 20;
+          setDivAngle(yAxisDegree, xAxisDegree);
+          adjustSheenPosition(event.pageX / width, event.pageY / width);
+        }
+        function setDivAngle(yAxisDegree, xAxisDegree) {
+          target.style.transform = `rotateY(${yAxisDegree}deg) rotateX(${xAxisDegree}deg)`;
+        } 
+        function adjustSheenPosition(xRatio, yRatio) {
+          // Scale the ratios (0 to 1) to 100 for a transform on the sheen
+          const xOffset = (xRatio - 0.5) * 200;
+          const yOffset = (yRatio - 0.5) * 200;
+          target.style.setProperty('--sheenX', `${xOffset}px`)
+          target.style.setProperty('--sheenY', `${yOffset}px`)
+        }
+        
+      </script>
+    </body>
+</html>

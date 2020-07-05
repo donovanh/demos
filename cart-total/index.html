@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Cart Total</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="./index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <article class="container">
+        <div class="demo">
+          <div class="cart-icon">
+            <svg width="256px" height="256px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="cart" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <path d="M0.186291501,5.8137085 L8.31801948,11.8241161" id="Line" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(4.636039, 8.656854) rotate(-315.000000) translate(-4.636039, -8.656854) "></path>
+                    <path d="M9,10.5 L9,18" id="Line-Copy" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(8.500000, 14.000000) rotate(-90.000000) translate(-8.500000, -14.000000) "></path>
+                    <circle id="Oval" fill="#333333" cx="5.5" cy="15.5" r="1.5"></circle>
+                    <circle id="Oval-Copy" fill="#333333" cx="12.5" cy="15.5" r="1.5"></circle>
+                    <path d="M10.5,0.5 L10.5,11.5" id="Line-Copy-2" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(10.000000, 6.000000) rotate(-90.000000) translate(-10.000000, -6.000000) "></path>
+                    <path d="M2.5,2.5 L2.5,4.5" id="Line-Copy-5" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(2.500000, 3.500000) rotate(-90.000000) translate(-2.500000, -3.500000) "></path>
+                    <path d="M8.5,5.63603897 L9.5,15" id="Line-Copy-3" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(9.000000, 10.000000) rotate(-90.000000) translate(-9.000000, -10.000000) "></path>
+                    <path d="M14.7481684,5.46699703 L14.9303356,9.73511314" id="Line-Copy-4" stroke="#333333" stroke-width="1.34736842" stroke-linecap="round" transform="translate(15.042977, 7.331184) rotate(23.000000) translate(-15.042977, -7.331184) "></path>
+                </g>
+            </svg>
+            <div class="total-container">
+              <span class="total">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="explanation">
+          <h1>How it works</h1>
+          <p>How to create this effect...</p>
+        </div>
+      </article>
+      <script>
+        const totalContainer = document.querySelector('.total-container');
+        setInterval(() => {
+          const total = document.querySelector('.total');
+          const totalValue = parseInt(total.innerText);
+          const newTotal = totalValue >= 9 ? 0 : totalValue + 1;
+          const newTotalHTML = `<span class="total">${newTotal}</span>`
+          totalContainer.innerHTML = newTotalHTML
+        }, 1500);
+      </script>
+    </body>
+</html>
