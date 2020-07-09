@@ -18,7 +18,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display SC', serif;
   height: 100vh;
   width: 75%;
 }
@@ -48,7 +47,7 @@ body {
   position: relative;
   height: 300px;
   width: 500px;
-  overflow: hidden;
+  overflow: hidden; /* Try removing this to see how the sheen works! */
   --sheenX: 0; /* Set these with JavaScript */
   --sheenY: 0;
 }
@@ -60,47 +59,13 @@ body {
   text-align: center;
 }
 
-.top-right {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-.top-left {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-
-.bottom {
-  position: absolute;
-  bottom: 10px;
-}
-
-h2, h3, p {
-  margin: 0;
-  text-shadow: 0 1px 1px #ccc;
-}
-
-h2 {
-  font-size: 18px;
-}
-
-h3 {
-  font-size: 16px;
-}
-
-p {
-  font-size: 14px;
-}
-
 .card::after {
   content: "";
   position: absolute;
-  top: -200px;
-  right: -200px;
-  bottom: -200px;
-  left: -200px;
+  top: -400px;
+  right: -400px;
+  bottom: -400px;
+  left: -400px;
   background: linear-gradient(217deg, rgba(255,255,255,0), rgba(255,255,255,0) 35%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,.25) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
   transform: translateX(var(--sheenX)) translateY(var(--sheenY));
 }
