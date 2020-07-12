@@ -38,7 +38,7 @@ body {
 /* Specific demo overrides */
 
 .demo {
-  perspective: 800px;
+
 }
 
 .menu {
@@ -47,7 +47,8 @@ body {
 }
 
 .icon {
+  cursor: pointer;
+  display: inline-block;
   font-size: 28px;
-  width: 100px;
-
+  padding: 10px;
 }

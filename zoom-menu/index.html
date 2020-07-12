@@ -23,5 +23,32 @@
           <p></p>
         </div>
       </article>
+      <script>
+        const icons = document.querySelectorAll('.icon');
+        
+        document.onmousemove = handleMouseMove;
+        function handleMouseMove(event) {
+          for (const icon of icons) {
+            const rect = icon.getBoundingClientRect();
+            const rectCenterX = rect.right - rect.left;
+            var x = Math.abs(event.clientX - (rect.left + rectCenterX / 2));
+            var y = Math.abs(event.clientY - rect.top);
+            // Create a number between 1 and 10, min 1
+            let xFactor = ((1 / x) * 20) + 1;
+            let yFactor = ((1 / y) * 20) + 1;
+            if (xFactor < 1.15) {
+              xFactor = 1;
+            } else if (xFactor > 2.25) {
+              xFactor = 2.25;
+            }
+            if (yFactor < 1.09) {
+              xFactor = 1;
+            }
+            icon.style.transform = `scale(${xFactor})`;
+          }
+            
+          
+        }
+      </script>
     </body>
 </html>
