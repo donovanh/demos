@@ -46,7 +46,7 @@ body {
 }
 
 .total {
-  animation: show-total 750ms cubic-bezier(.4,1.7,.36,.78) forwards;
+  animation: show-total 750ms cubic-bezier(.5,1.66,.25,.66) forwards;
   display: inline-block;
   position: absolute;
   font-family: Helvetica, Sans-serif;
